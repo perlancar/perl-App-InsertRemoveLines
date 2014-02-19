@@ -1,0 +1,103 @@
+#!/usr/bin/perl
+
+use 5.010001;
+use strict;
+use warnings;
+
+use Getopt::Long;
+
+# VERSION
+
+my %Opts;
+
+sub parse_cmdline {
+    #Getopt::Long::Configure("nopass_through");
+    my $usage = <<USAGE;
+Usage:
+  remove-lines [OPTS] LINESPEC [FILE ...]
+  remove-lines --help
+Example:
+  remove-lines 1 < file   ; # remove first line
+  remove-lines -i 3-5 file; # remove lines 3-5 from file, replace file
+Options:
+  -e CODE
+    Use perl code. Will be applied to every line. Like in perl, $_
+    will contain the current line and $. the line number.
+  -i[.EXT]
+    Edit in-place, just like perl's -i. Can optionally specify
+    backup extension. By default does not create any backup.
+For more details, see the manpage/documentation.
+USAGE
+    my $res = GetOptions(
+        'help|h'  => sub { print $usage; exit 0 },
+        'i:s'     => \$Opts{in_place},
+    );
+    exit 99 if !$res;
+
+    if (defined($Opts{in_place}) && !@ARGV) {
+        warn "In-place editing requires specifying at least one file\n";
+        exit 99;
+    }
+}
+
+sub run {
+}
+
+# MAIN
+
+parse_cmdline();
+run();
+
+1;
+# ABSTRACT: Remove lines from files or streams
+# PODNAME: remove-lines
+
+=head1 SYNOPSIS
+
+Usage:
+
+ % remove-lines [OPTS] LINESPEC [file ...]
+
+
+=head1 DESCRIPTION
+
+This script remove one or more lines from files or streams. It's basically
+equivalent to (in pseudo-code):
+
+ % perl [-i] -ne'print unless $. ~~ LINESPEC' [FILE ...]
+
+
+=head1 OPTIONS
+
+=over
+
+=item * --help, -h
+
+=item * -e CODE
+
+=item * -i[.ext]
+
+Just like L<perl>'s -i option.
+
+=back
+
+
+=head1 EXIT CODES
+
+99 on command-line options error.
+
+1 on error.
+
+0 on success.
+
+
+=head1 TODO
+
+
+=head1 SEE ALSO
+
+L<App::InsertRemoveLines>
+
+L<insert-lines>
+
+=cut
