@@ -58,10 +58,9 @@ Usage:
 
 =head1 DESCRIPTION
 
-This script remove one or more lines from files or streams. It's basically
-equivalent to (in pseudo-code):
+This script remove one or more lines from files or streams. It's equivalent to:
 
- % perl [-i] -ne'print unless $. ~~ LINESPEC' [FILE ...]
+ % sed [-i] '5;10d' [FILE ...]
 
 
 =head1 OPTIONS
