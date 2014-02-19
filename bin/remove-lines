@@ -20,9 +20,6 @@ Example:
   remove-lines 1 < file   ; # remove first line
   remove-lines -i 3-5 file; # remove lines 3-5 from file, replace file
 Options:
-  -e CODE
-    Use perl code. Will be applied to every line. Like in perl, $_
-    will contain the current line and $. the line number.
   -i[.EXT]
     Edit in-place, just like perl's -i. Can optionally specify
     backup extension. By default does not create any backup.
@@ -73,9 +70,7 @@ equivalent to (in pseudo-code):
 
 =item * --help, -h
 
-=item * -e CODE
-
-=item * -i[.ext]
+=item * --in-place[=EXT], -i[.EXT]
 
 Just like L<perl>'s -i option.
 
@@ -91,7 +86,18 @@ Just like L<perl>'s -i option.
 0 on success.
 
 
+=head1 FAQ
+
+=head2 Why? Couldn't one just use perl or sed?
+
+Yes, one can. But this is simpler and less error-prone, especially for
+command-line beginners or people not familiar with Perl or sed.
+
+
 =head1 TODO
+
+Add -e CODE, e.g. remove-lines -e '$_ =~ /blah/'? At this point, you might as
+well go to Perl directly.
 
 
 =head1 SEE ALSO
@@ -99,5 +105,9 @@ Just like L<perl>'s -i option.
 L<App::InsertRemoveLines>
 
 L<insert-lines>
+
+L<grep>
+
+L<perl>, L<sed>
 
 =cut
