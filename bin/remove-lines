@@ -47,7 +47,7 @@ run();
 
 1;
 # ABSTRACT: Remove lines from files or streams
-# PODNAME: remove-lines
+# PODNAME:
 
 =head1 SYNOPSIS
 
