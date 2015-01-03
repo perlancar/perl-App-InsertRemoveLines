@@ -93,12 +93,6 @@ Yes, one can. But this is simpler and less error-prone, especially for
 command-line beginners or people not familiar with Perl or sed.
 
 
-=head1 TODO
-
-Add -e CODE, e.g. remove-lines -e '$_ =~ /blah/'? At this point, you might as
-well go to Perl directly.
-
-
 =head1 SEE ALSO
 
 L<App::InsertRemoveLines>
